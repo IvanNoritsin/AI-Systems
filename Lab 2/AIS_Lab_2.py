@@ -85,9 +85,9 @@ plt.title("Распределение типов стекла")
 plt.xlabel("Тип стекла")
 plt.ylabel("Количество образцов")
 
-sns.pairplot(data=data[['Na', 'Mg', 'Al', 'Si', 'K', 'Ca']])
+sns.pairplot(data=data[['Na', 'Mg', 'Al', 'Si', 'K', 'Ca', 'Type']], hue='Type', palette='husl')
 
-data.drop(columns=["Id", "Type"], inplace=True)
+data.drop(columns=["Id"], inplace=True)
 
 plt.figure(figsize=(10, 6))
 sns.heatmap(data.corr(), cmap=plt.cm.Blues)
