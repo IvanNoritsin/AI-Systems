@@ -33,18 +33,29 @@ ct = ColumnTransformer(transformers=[
 
 X = ct.fit_transform(X)
 
+print("\nМатрица признаков после обработки категориальных признаков:")
+print(X[:10])
+print("\n----------------------------------------------------------------------")
+
 # ---
 
 y = np.log1p(y)
 
 # ---
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0) 
+X_train, X_test, y_train, y_test = train_test_split(X, 
+                                                    y, 
+                                                    test_size = 0.25, 
+                                                    random_state = 0) 
 
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 
 y_pred = regressor.predict(X_test)
+
+print("\nПервые 10 зависимых перем")
+print(y_test[:10])
+print(y_pred[:10])
 
 # ---
 
