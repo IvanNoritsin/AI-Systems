@@ -7,7 +7,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
-import statsmodels.api as sm
+from sklearn.preprocessing import StandardScaler
 
 
 data_path = "https://archive.ics.uci.edu/ml/machine-learning-databases/forest-fires/forestfires.csv"
@@ -52,7 +52,15 @@ print("\n----------------------------------------------------------------------"
 
 # ---
 
-X_train, X_test, y_train, y_test = train_test_split(X_encoded, 
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X_encoded)
+print("\nПромасштабированные признаки:")
+print(X_scaled[:5])
+print("\n----------------------------------------------------------------------")
+
+# ---
+
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, 
                                                     y, 
                                                     test_size=0.25, 
                                                     random_state=42)
